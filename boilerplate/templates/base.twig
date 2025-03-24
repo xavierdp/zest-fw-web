@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ZestPHP Web{% endblock %}</title>
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
+    {% block stylesheets %}{% endblock %}
+    
+    <!-- Component CSS -->
+    {% if component_css is defined %}
+        {% for css_path in component_css %}
+            <link rel="stylesheet" href="{{ css_path }}">
+        {% endfor %}
+    {% endif %}
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold">ZestPHP Web</h1>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="{{ url('') }}" class="hover:underline">Home</a></li>
+                        <li><a href="{{ url('about') }}" class="hover:underline">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; {{ "now"|date("Y") }} ZestPHP Web Framework</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    {% block javascripts %}{% endblock %}
+    
+    <!-- Component JavaScript -->
+    {% if component_js is defined %}
+        {% for js_path in component_js %}
+            <script src="{{ js_path }}"></script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

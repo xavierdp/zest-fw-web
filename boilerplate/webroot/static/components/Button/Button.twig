@@ -1,0 +1,10 @@
+{# Button Component Template #}
+{% if url %}
+    <a href="{{ url }}" class="{{ classes }}" {% if disabled %}disabled{% endif %}{{ attributesStr|raw }}>
+        {{ text }}
+    </a>
+{% else %}
+    <button type="button" class="{{ classes }}" {% if disabled %}disabled{% endif %}{{ attributesStr|raw }}>
+        {{ text }}
+    </button>
+{% endif %}
