@@ -4,7 +4,7 @@
  * 
  * A reusable button component with different styles and sizes
  */
-class ButtonComponent {
+class Button extends Component {
     /**
      * Prepare data for the component
      * 
@@ -89,5 +89,35 @@ class ButtonComponent {
         $data['attributesStr'] = $attributesStr;
         
         return $data;
+    }
+    
+    /**
+     * Render the button component
+     * 
+     * @param array $data Component data
+     * @return string Rendered component
+     */
+    public function render($data = []) {
+        // Prepare data
+        $data = $this->prepare($data);
+        
+        // Determine if we're rendering a button or a link
+        if ($data['url']) {
+            // Render as link
+            $html = '<a href="' . htmlspecialchars($data['url']) . '" class="inline-block rounded ' . $data['classes'] . '"' . $data['attributesStr'] . '>';
+            $html .= htmlspecialchars($data['text']);
+            $html .= '</a>';
+        } else {
+            // Render as button
+            $html = '<button type="button" class="inline-block rounded ' . $data['classes'] . '"';
+            if ($data['disabled']) {
+                $html .= ' disabled';
+            }
+            $html .= $data['attributesStr'] . '>';
+            $html .= htmlspecialchars($data['text']);
+            $html .= '</button>';
+        }
+        
+        return $html;
     }
 }

@@ -1,10 +1,13 @@
-{# Button Component Template #}
+{# Component Template #}
+<link rel="stylesheet" href="/static/components/{{ _componentName }}/{{ _componentName }}.css">
+<script src="/static/components/{{ _componentName }}/{{ _componentName }}.js"></script>
+
 {% if url %}
-    <a href="{{ url }}" class="{{ classes }}" {% if disabled %}disabled{% endif %}{{ attributesStr|raw }}>
-        {{ text }}
-    </a>
+	<a href="{{ url }}" class="{{ classes }}" {% if disabled %} disabled {% endif %} {{ attributesStr|raw }}>
+		{{ text }}
+	</a>
 {% else %}
-    <button type="button" class="{{ classes }}" {% if disabled %}disabled{% endif %}{{ attributesStr|raw }}>
-        {{ text }}
-    </button>
+	<button type="button" class="{{ classes }}" {% if disabled %} disabled {% endif %} {{ attributesStr|raw }}>
+		{{ text }}
+	</button>
 {% endif %}
